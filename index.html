@@ -1,18 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Avionics Project</title>
+<meta charset="UTF-8">
+<title>Avionics System</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #020617, #0f172a);
+    color: white;
+    text-align: center;
+}
+
+/* CENTER CONTENT */
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TITLE */
+h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* SUBTEXT */
+p {
+    font-size: 18px;
+    color: #94a3b8;
+}
+
+/* BUTTON */
+.btn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: #38bdf8;
+    color: black;
+    font-size: 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0ea5e9;
+}
+
+/* ANIMATION */
+.fade {
+    animation: fadeIn 1.2s ease-in;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
 </head>
 
-<body style="background:black; color:white; text-align:center;">
+<body>
 
-<h1>🚀 AVIONICS PROJECT</h1>
+<div class="container fade">
 
-<p>Click below to open dashboard:</p>
+<h1>🚀 AVIONICS SYSTEM</h1>
 
-<a href="dashboard.html" style="color:cyan; font-size:20px;">
-    Open Dashboard
+<p>
+A complete flight control, telemetry, and recovery system  
+for model rocket applications
+</p>
+
+<a href="dashboard.html" class="btn">
+    View Dashboard
 </a>
+
+</div>
 
 </body>
 </html>

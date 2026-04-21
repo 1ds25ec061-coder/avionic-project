@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Avionics System Dashboard</title>
+<title>Avionics Dashboard</title>
 
 <style>
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #1e1b4b, #0f172a);
+    background: linear-gradient(180deg, #1e1b4b, #020617);
     color: white;
 }
 
@@ -21,62 +21,52 @@ header {
     border-bottom: 2px solid #a78bfa;
 }
 
-/* SECTION */
+/* SLIDE */
 .section {
-    padding: 40px 20px;
-    max-width: 1100px;
-    margin: auto;
+    min-height: 100vh;
+    padding: 40px;
+    border-bottom: 1px solid #4c1d95;
 }
 
 /* TITLE */
-.section h2 {
-    color: #a78bfa;
-    border-left: 5px solid #a78bfa;
-    padding-left: 10px;
+.section h1 {
+    color: #c4b5fd;
 }
 
 /* CARD */
 .card {
-    background: rgba(255,255,255,0.05);
+    background: #0f172a;
     padding: 20px;
-    margin-top: 20px;
+    margin: 15px 0;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(167,139,250,0.2);
 }
 
 /* IMAGE */
-.card img {
+img {
     width: 100%;
     border-radius: 10px;
-    margin-top: 15px;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    margin-top: 10px;
 }
 
 /* LIST */
 ul {
-    padding-left: 20px;
+    line-height: 1.8;
 }
 
-/* FLOWCHART BOX */
-.flow {
-    background: #020617;
-    padding: 15px;
-    border-radius: 10px;
-    font-family: monospace;
-    line-height: 1.6;
+/* NAV BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #8b5cf6;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
 }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 15px;
-    color: #cbd5f5;
+.btn:hover {
+    background: #7c3aed;
 }
 </style>
 
@@ -85,120 +75,133 @@ footer {
 <body>
 
 <header>
-🚀 AVIONICS SYSTEM – ROCKET & CAN-SAT
+🚀 AVIONICS SYSTEM PRESENTATION
 </header>
 
-<!-- METHODOLOGY -->
-<div class="section">
-<h2>📘 Methodology</h2>
-<div class="card">
-<p>
-The system is divided into two independent subsystems: Rocket Avionics and CAN-SAT Avionics.
-The rocket handles flight control, apogee detection, and deployment, while the CAN-SAT
-operates independently after separation, collecting and transmitting environmental and
-positional data.
-</p>
-</div>
-</div>
+<!-- ================= ROCKET ================= -->
 
-<!-- SYSTEM STRUCTURE -->
 <div class="section">
-<h2>🧩 System Architecture</h2>
-
-<div class="grid">
+<h1>🚀 ROCKET AVIONICS</h1>
 
 <div class="card">
-<h3>🚀 Rocket Avionics</h3>
+<h2>Methodology</h2>
+<ul>
+<li>Detect launch using sensors</li>
+<li>Track altitude continuously</li>
+<li>Identify apogee</li>
+<li>Trigger CAN-SAT separation</li>
+<li>Deploy parachute</li>
+<li>Transmit telemetry (Channel 1)</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>System Structure</h2>
+<ul>
+<li>Teensy 4.1 Microcontroller</li>
+<li>BNO055 (Orientation)</li>
+<li>BMP388 (Altitude)</li>
+<li>LoRa SX1278 (Communication)</li>
+<li>Servo (Deployment)</li>
+<li>SD Card (Data Logging)</li>
+<li>Battery + Power System</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Working Principle</h2>
+<ul>
+<li>System starts in idle mode</li>
+<li>Launch detected via acceleration</li>
+<li>Altitude increases → ascent phase</li>
+<li>Peak detected → apogee</li>
+<li>Servo activates → eject CAN-SAT</li>
+<li>Parachute deployed</li>
+<li>Data transmitted + stored</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Circuit Diagram</h2>
+<img src="rocket.png" alt="Rocket Circuit">
+</div>
+
+<div class="card">
+<h2>Flowchart Logic</h2>
+<ul>
+<li>BOOT → Initialize sensors</li>
+<li>WAIT → Launch detection</li>
+<li>ASCENT → Monitor altitude</li>
+<li>APOGEE → Trigger deployment</li>
+<li>DESCENT → Send telemetry</li>
+<li>LAND → Stop system</li>
+</ul>
+</div>
+
+</div>
+
+<!-- ================= CANSAT ================= -->
+
+<div class="section">
+<h1>🛰️ CAN-SAT AVIONICS</h1>
+
+<div class="card">
+<h2>Methodology</h2>
+<ul>
+<li>Operate independently after separation</li>
+<li>Measure flight data</li>
+<li>Capture video</li>
+<li>Transmit telemetry (Channel 2)</li>
+<li>Log all data</li>
+<li>Land safely</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>System Structure</h2>
 <ul>
 <li>Teensy 4.1 Microcontroller</li>
 <li>BNO055 IMU</li>
 <li>BMP388 Altimeter</li>
-<li>LoRa (Channel 1)</li>
-<li>Servo Deployment</li>
-<li>SD Card Logging</li>
+<li>GPS Module (NEO-6M)</li>
+<li>LoRa SX1278</li>
+<li>Camera (RunCam Nano)</li>
+<li>SD Card Storage</li>
+<li>Battery System</li>
 </ul>
-<img src="rocket.png">
 </div>
 
 <div class="card">
-<h3>🛰️ CAN-SAT Avionics</h3>
+<h2>Working Principle</h2>
 <ul>
-<li>Teensy 4.1 Microcontroller</li>
-<li>BNO055 IMU</li>
-<li>BMP388 Sensor</li>
-<li>GPS Module</li>
-<li>Camera System</li>
-<li>LoRa (Channel 2)</li>
+<li>Activated before launch</li>
+<li>Remains passive during ascent</li>
+<li>Separates at apogee</li>
+<li>Starts independent operation</li>
+<li>Records data + video</li>
+<li>Transmits telemetry</li>
+<li>Descends via parachute</li>
 </ul>
-<img src="cansat.png">
 </div>
-
-</div>
-</div>
-
-<!-- WORKING -->
-<div class="section">
-<h2>⚙️ Working Principle</h2>
 
 <div class="card">
-<p>
-During launch, the rocket avionics continuously monitors altitude and motion.
-At apogee, the system triggers a servo mechanism to eject the CAN-SAT.
-After separation, both systems operate independently and transmit telemetry
-data to the ground station using separate communication channels.
-</p>
+<h2>Circuit Diagram</h2>
+<img src="cansat.png" alt="CAN-SAT Circuit">
 </div>
-
-</div>
-
-<!-- LOGIC -->
-<div class="section">
-<h2>🧠 Flight Logic</h2>
-
-<div class="card flow">
-BOOT  
-→ Sensor Initialization  
-→ Waiting for Launch  
-→ Launch Detected  
-→ Ascending Phase  
-→ Apogee Detection  
-→ CAN-SAT Deployment  
-→ Parachute Deployment  
-→ Descent  
-→ Landing  
-</div>
-
-</div>
-
-<!-- FLOWCHART IMAGE -->
-<div class="section">
-<h2>📊 Flowchart</h2>
 
 <div class="card">
-<img src="flowchart.png" alt="Flowchart">
-</div>
-
-</div>
-
-<!-- IMPORTANT NOTES -->
-<div class="section">
-<h2>⚠️ Important Notes</h2>
-
-<div class="card">
+<h2>Flowchart Logic</h2>
 <ul>
-<li>All systems must share a common ground</li>
-<li>Use regulated 5V power supply</li>
-<li>Separate communication channels for Rocket and CAN-SAT</li>
-<li>Ensure shock resistance (~30g)</li>
-<li>Battery must sustain full mission duration</li>
+<li>BOOT → Initialize system</li>
+<li>WAIT → Launch phase</li>
+<li>SEPARATION → Activate full system</li>
+<li>DATA COLLECTION → Sensors + Camera</li>
+<li>TRANSMIT → Send telemetry</li>
+<li>LAND → End mission</li>
 </ul>
 </div>
 
 </div>
-
-<footer>
-IN-SPACe Avionics Project | Dual Channel Telemetry System
-</footer>
 
 </body>
 </html>

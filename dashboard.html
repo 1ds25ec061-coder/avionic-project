@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Avionics Dashboard</title>
+<title>Avionics System Dashboard</title>
 
 <style>
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #020617, #0f172a);
-    color: #e2e8f0;
+    background: linear-gradient(180deg, #1e1b4b, #0f172a);
+    color: white;
 }
 
 /* HEADER */
@@ -18,57 +18,65 @@ header {
     padding: 20px;
     font-size: 28px;
     font-weight: bold;
-    background: #020617;
-    border-bottom: 2px solid #38bdf8;
+    border-bottom: 2px solid #a78bfa;
 }
 
-/* SECTION STYLE */
-section {
-    padding: 25px;
-    animation: fadeIn 1s ease-in;
+/* SECTION */
+.section {
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* TITLE */
+.section h2 {
+    color: #a78bfa;
+    border-left: 5px solid #a78bfa;
+    padding-left: 10px;
 }
 
 /* CARD */
 .card {
-    background: rgba(30, 41, 59, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 10px;
-    box-shadow: 0 0 10px #38bdf8;
-}
-
-/* TABLE */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 10px;
-    border: 1px solid #334155;
-}
-th {
-    background: #020617;
-}
-
-/* CODE BLOCK */
-code {
-    display: block;
-    background: #020617;
-    padding: 15px;
-    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(167,139,250,0.2);
 }
 
 /* IMAGE */
-img {
+.card img {
     width: 100%;
     border-radius: 10px;
-    box-shadow: 0 0 15px #38bdf8;
+    margin-top: 15px;
 }
 
-/* ANIMATION */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* LIST */
+ul {
+    padding-left: 20px;
+}
+
+/* FLOWCHART BOX */
+.flow {
+    background: #020617;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: monospace;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #cbd5f5;
 }
 </style>
 
@@ -76,74 +84,121 @@ img {
 
 <body>
 
-<header>🚀 AVIONICS SYSTEM DASHBOARD</header>
+<header>
+🚀 AVIONICS SYSTEM – ROCKET & CAN-SAT
+</header>
 
-<section>
-<h2>1. System Overview</h2>
+<!-- METHODOLOGY -->
+<div class="section">
+<h2>📘 Methodology</h2>
 <div class="card">
-Sensors → Arduino Nano → Logic → Actuators  
-<br>Telemetry → LoRa → Ground Station  
-<br>Backup → SD Card
-</div>
-</section>
-
-<section>
-<h2>2. Circuit Diagram</h2>
-<div class="card">
-<img src="circuit.png" alt="Avionics Circuit Diagram">
-    <p style="text-align:center; margin-top:10px;">
-    Fig: Avionics Wiring Diagram
+<p>
+The system is divided into two independent subsystems: Rocket Avionics and CAN-SAT Avionics.
+The rocket handles flight control, apogee detection, and deployment, while the CAN-SAT
+operates independently after separation, collecting and transmitting environmental and
+positional data.
 </p>
 </div>
-</section>
-
-<section>
-<h2>3. Hardware Components</h2>
-<table>
-<tr><th>Subsystem</th><th>Component</th></tr>
-<tr><td>Microcontroller</td><td>Arduino Nano</td></tr>
-<tr><td>Barometer</td><td>BMP388</td></tr>
-<tr><td>IMU</td><td>BNO055</td></tr>
-<tr><td>GNSS</td><td>NEO-M8N</td></tr>
-<tr><td>Communication</td><td>LoRa SX1278</td></tr>
-<tr><td>Storage</td><td>SD Card</td></tr>
-<tr><td>Actuator</td><td>MG90S Servo</td></tr>
-</table>
-</section>
-
-<section>
-<h2>4. Pin Definitions</h2>
-<table>
-<tr><th>Component</th><th>Pins</th></tr>
-<tr><td>Sensors</td><td>A4, A5 (I2C)</td></tr>
-<tr><td>GPS</td><td>D4, D5</td></tr>
-<tr><td>LoRa</td><td>D10–D13, D2, D9</td></tr>
-<tr><td>SD Card</td><td>D8 (CS)</td></tr>
-<tr><td>Servos</td><td>D6, D7</td></tr>
-</table>
-</section>
-
-<section>
-<h2>5. Flight Logic</h2>
-<code>
-BOOT → TEST → PAD → ASCENT → APOGEE → DEPLOY → DESCENT → IMPACT
-</code>
-</section>
-
-<section>
-<h2>6. Flowchart</h2>
-<code>
-START → INIT → WAIT → LAUNCH → ASCENT → APOGEE → DEPLOY → DESCENT → END
-</code>
-</section>
-
-<section>
-<h2>7. Working</h2>
-<div class="card">
-System reads sensors, processes logic, sends telemetry via LoRa, 
-deploys payload at apogee, and ensures safe recovery.
 </div>
-</section>
+
+<!-- SYSTEM STRUCTURE -->
+<div class="section">
+<h2>🧩 System Architecture</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>🚀 Rocket Avionics</h3>
+<ul>
+<li>Teensy 4.1 Microcontroller</li>
+<li>BNO055 IMU</li>
+<li>BMP388 Altimeter</li>
+<li>LoRa (Channel 1)</li>
+<li>Servo Deployment</li>
+<li>SD Card Logging</li>
+</ul>
+<img src="rocket.png">
+</div>
+
+<div class="card">
+<h3>🛰️ CAN-SAT Avionics</h3>
+<ul>
+<li>Teensy 4.1 Microcontroller</li>
+<li>BNO055 IMU</li>
+<li>BMP388 Sensor</li>
+<li>GPS Module</li>
+<li>Camera System</li>
+<li>LoRa (Channel 2)</li>
+</ul>
+<img src="cansat.png">
+</div>
+
+</div>
+</div>
+
+<!-- WORKING -->
+<div class="section">
+<h2>⚙️ Working Principle</h2>
+
+<div class="card">
+<p>
+During launch, the rocket avionics continuously monitors altitude and motion.
+At apogee, the system triggers a servo mechanism to eject the CAN-SAT.
+After separation, both systems operate independently and transmit telemetry
+data to the ground station using separate communication channels.
+</p>
+</div>
+
+</div>
+
+<!-- LOGIC -->
+<div class="section">
+<h2>🧠 Flight Logic</h2>
+
+<div class="card flow">
+BOOT  
+→ Sensor Initialization  
+→ Waiting for Launch  
+→ Launch Detected  
+→ Ascending Phase  
+→ Apogee Detection  
+→ CAN-SAT Deployment  
+→ Parachute Deployment  
+→ Descent  
+→ Landing  
+</div>
+
+</div>
+
+<!-- FLOWCHART IMAGE -->
+<div class="section">
+<h2>📊 Flowchart</h2>
+
+<div class="card">
+<img src="flowchart.png" alt="Flowchart">
+</div>
+
+</div>
+
+<!-- IMPORTANT NOTES -->
+<div class="section">
+<h2>⚠️ Important Notes</h2>
+
+<div class="card">
+<ul>
+<li>All systems must share a common ground</li>
+<li>Use regulated 5V power supply</li>
+<li>Separate communication channels for Rocket and CAN-SAT</li>
+<li>Ensure shock resistance (~30g)</li>
+<li>Battery must sustain full mission duration</li>
+</ul>
+</div>
+
+</div>
+
+<footer>
+IN-SPACe Avionics Project | Dual Channel Telemetry System
+</footer>
 
 </body>
 </html>

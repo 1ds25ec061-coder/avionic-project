@@ -2,82 +2,182 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Avionics System</title>
+<title>Avionics Project</title>
 
 <style>
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #020617, #0f172a);
+    background: linear-gradient(180deg,#1e1b4b,#020617);
     color: white;
-    text-align: center;
 }
 
-/* CENTER CONTENT */
-.container {
-    height: 100vh;
+/* NAVBAR */
+nav {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: #020617;
+    border-bottom: 1px solid #4c1d95;
 }
 
-/* TITLE */
-h1 {
+nav h1 {
+    color: #c4b5fd;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h2 {
     font-size: 40px;
-    margin-bottom: 10px;
+    color: #c4b5fd;
 }
 
-/* SUBTEXT */
-p {
+.hero p {
     font-size: 18px;
     color: #94a3b8;
+    max-width: 700px;
+    margin: auto;
 }
 
 /* BUTTON */
 .btn {
-    margin-top: 25px;
+    margin-top: 30px;
     padding: 12px 25px;
-    background: #38bdf8;
-    color: black;
-    font-size: 18px;
+    background: #8b5cf6;
     border-radius: 8px;
     text-decoration: none;
-    transition: 0.3s;
+    color: white;
+    display: inline-block;
 }
 
 .btn:hover {
-    background: #0ea5e9;
+    background: #7c3aed;
 }
 
-/* ANIMATION */
-.fade {
-    animation: fadeIn 1.2s ease-in;
+/* SECTION */
+.section {
+    padding: 60px 40px;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(30px);}
-    to {opacity: 1; transform: translateY(0);}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: #0f172a;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(139,92,246,0.2);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="container fade">
+<!-- NAVBAR -->
+<nav>
+<h1>🚀 Avionics Project</h1>
+<div>
+<a href="index.html">Home</a>
+<a href="dashboard.html">Dashboard</a>
+</div>
+</nav>
 
-<h1>🚀 AVIONICS SYSTEM</h1>
-
+<!-- HERO -->
+<div class="hero">
+<h2>IN-SPACe Rocket & CAN-SAT Avionics System</h2>
 <p>
-A complete flight control, telemetry, and recovery system  
-for model rocket applications
+A dual-channel avionics architecture designed for reliable flight detection, 
+apogee deployment, telemetry transmission, and payload recovery.
 </p>
 
-<a href="dashboard.html" class="btn">
-    View Dashboard
-</a>
+<a href="dashboard.html" class="btn">Open Dashboard</a>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section">
+<h2>Project Overview</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>🚀 Rocket Avionics</h3>
+<ul>
+<li>Launch detection</li>
+<li>Apogee detection</li>
+<li>CAN-SAT deployment</li>
+<li>Parachute system</li>
+<li>Telemetry transmission</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🛰️ CAN-SAT System</h3>
+<ul>
+<li>Independent payload system</li>
+<li>Sensor data collection</li>
+<li>GPS tracking</li>
+<li>Video capture</li>
+<li>Safe landing</li>
+</ul>
+</div>
 
 </div>
+</div>
+
+<!-- SYSTEM FEATURES -->
+<div class="section">
+<h2>Key Features</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>📡 Communication</h3>
+<p>Dual-channel LoRa telemetry ensuring reliable long-range communication.</p>
+</div>
+
+<div class="card">
+<h3>🧠 Intelligent Control</h3>
+<p>Teensy-based control system with real-time decision making.</p>
+</div>
+
+<div class="card">
+<h3>📊 Data Logging</h3>
+<p>All flight data stored securely on SD card for analysis.</p>
+</div>
+
+<div class="card">
+<h3>🔋 Power System</h3>
+<p>Efficient 18650 battery system with regulated power supply.</p>
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+IN-SPACe Model Rocketry Project | Designed by Student Engineer 🚀
+</footer>
 
 </body>
 </html>
